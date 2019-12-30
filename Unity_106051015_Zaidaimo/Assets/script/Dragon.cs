@@ -16,7 +16,7 @@ public class Dragon : MonoBehaviour
     public Transform tran;  //旋轉
     public Rigidbody rig;   //跑步
     public Animator ani;   //動畫觸發
-    
+    [Header("檢物品位置")]
     public Rigidbody rigCatch;   //抓取物品
     
     
@@ -35,7 +35,7 @@ public class Dragon : MonoBehaviour
          if (other.name == "Hamburger" && ani.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
         {
             Physics.IgnoreCollision(other, GetComponent<Collider>());   //兩物間不產生物理碰撞
-            other.GetComponent<HingeJoint>().connectedBody = rigCatch;
+            other.GetComponent<HingeJoint>().connectedBody = rigCatch;   // 碰撞物件.取得元件<泛型>().連接身體 = 檢物品位置
         }
     }
 
@@ -52,7 +52,7 @@ public class Dragon : MonoBehaviour
         float v = Input.GetAxis ("Vertical");   //W S鍵控制前後
         rig.AddForce(tran.forward * speed * v * Time.deltaTime);   //區域座標
 
-        ani.SetBool("walk", v != 0);
+        ani.SetBool("fly", v != 0);
     }
 
     private void Attack ()
