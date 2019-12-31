@@ -5,7 +5,7 @@ using UnityEngine;
 public class Dragon : MonoBehaviour
 {
     [Header("移動速度")]
-    [Range(1, 2500)]
+    [Range(1, 2000)]
     public int speed = 10;             // 旋轉速度
     [Header("旋轉速度"), Tooltip("Dragon的旋轉速度"), Range(1.5f, 200f)]
     public float turn = 100f;         // 浮點數
@@ -32,7 +32,7 @@ public class Dragon : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         //碰撞物件為 Hamburger時播放動畫Attack
-         if (other.name == "Hamburger" && ani.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+         if (other.name == "Hamburger" && ani.GetCurrentAnimatorStateInfo(0).IsName("attack"))
         {
             Physics.IgnoreCollision(other, GetComponent<Collider>());   //兩物間不產生物理碰撞
             other.GetComponent<HingeJoint>().connectedBody = rigCatch;   // 碰撞物件.取得元件<泛型>().連接身體 = 檢物品位置
